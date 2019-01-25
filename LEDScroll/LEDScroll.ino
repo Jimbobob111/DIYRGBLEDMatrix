@@ -8,8 +8,8 @@ String incomming = "";
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(9600);
-  pinMode(0,OUTPUT);//reset pin
-  pinMode(1,OUTPUT);//pulse pin
+  pinMode(6,OUTPUT);//reset pin
+  pinMode(7,OUTPUT);//pulse pin
   pinMode(row1,OUTPUT);
   pinMode(row2,OUTPUT);
   pinMode(row3,OUTPUT);
@@ -42,7 +42,7 @@ void displayString(String str)
 
 void displayLetter(char letter)
 {
-  uint32_t scrollTime = 0.005 * 60000L;
+  uint32_t scrollTime = 0.0025 * 60000L;
   //code to scroll on
   for(int i=4;i>=0;i--)
   {
@@ -50,8 +50,8 @@ void displayLetter(char letter)
     {
         for(int a=i-1;a>=0;a--)
         {
-            digitalWrite(1, HIGH);
-            digitalWrite(1, LOW);
+            digitalWrite(7, HIGH);
+            digitalWrite(7, LOW);
             delay(1);
         }
         for(int x=0;x<=4;x++)
@@ -62,35 +62,15 @@ void displayLetter(char letter)
           digitalWrite(row3, LOW);
           digitalWrite(row4, LOW);
           digitalWrite(row5, LOW);
-          digitalWrite(1, HIGH);
-          digitalWrite(1, LOW);
+          digitalWrite(7, HIGH);
+          digitalWrite(7, LOW);
           delay(1);
         }
-        digitalWrite(0, HIGH);
-        digitalWrite(0, LOW);
+        digitalWrite(6, HIGH);
+        digitalWrite(6, LOW);
         delay(1); 
       }
   }
-  // display
-  for( uint32_t tStart = millis();  (millis()-tStart) < scrollTime;  )
-  {
-    for(int x=0;x<=4;x++)
-    {
-      callLetter(letter, x);
-      digitalWrite(row1, LOW);
-      digitalWrite(row2, LOW);
-      digitalWrite(row3, LOW);
-      digitalWrite(row4, LOW);
-      digitalWrite(row5, LOW);
-      digitalWrite(1, HIGH);
-      digitalWrite(1, LOW);
-      delay(1);
-    }
-    digitalWrite(0, HIGH);
-    digitalWrite(0, LOW);
-    delay(1); 
-  }
-
   //scroll out
   for(int i=0;i<=4;i++)
   {
@@ -104,12 +84,12 @@ void displayLetter(char letter)
           digitalWrite(row3, LOW);
           digitalWrite(row4, LOW);
           digitalWrite(row5, LOW);
-          digitalWrite(1, HIGH);
-          digitalWrite(1, LOW);
+          digitalWrite(7, HIGH);
+          digitalWrite(7, LOW);
           delay(1);
         }
-        digitalWrite(0, HIGH);
-        digitalWrite(0, LOW);
+        digitalWrite(6, HIGH);
+        digitalWrite(6, LOW);
         delay(1); 
       }
   }
@@ -196,6 +176,36 @@ void callLetter(char letter, int x)
     case 'z':
       letterZ(x);
       break;
+    case '0':
+      letter0(x);
+      break;
+    case '1':
+      letter1(x);
+      break;
+    case '2':
+      letter2(x);
+      break;
+    case '3':
+      letter3(x);
+      break;
+    case '4':
+      letter4(x);
+      break;
+    case '5':
+      letter5(x);
+      break;
+    case '6':
+      letter6(x);
+      break;
+    case '7':
+      letter7(x);
+      break;
+    case '8':
+      letter8(x);
+      break;
+    case '9':
+      letter9(x);
+      break;
     case ' ':
       pause(x);
       break;
@@ -204,6 +214,9 @@ void callLetter(char letter, int x)
       break;
     case '?':
       heart(x);
+      break;
+    case ':':
+      letterColon(x);
       break;
     default:
       return;
@@ -997,6 +1010,305 @@ void letterZ(int x)
       digitalWrite(row5, HIGH);
       digitalWrite(row1, HIGH);
       digitalWrite(row4, HIGH);
+      break;
+  }
+}
+
+void letter0(int x)
+{
+  switch(x){
+    case 0:
+      digitalWrite(row4, HIGH);
+      digitalWrite(row3, HIGH);
+      digitalWrite(row2, HIGH);
+      break;
+    case 1:
+      digitalWrite(row5, HIGH);
+      digitalWrite(row2, HIGH);
+      digitalWrite(row1, HIGH);
+      break;
+    case 2:
+      digitalWrite(row5, HIGH);
+      digitalWrite(row3, HIGH);
+      digitalWrite(row1, HIGH);
+      break;
+    case 3:
+      digitalWrite(row5, HIGH);
+      digitalWrite(row4, HIGH);
+      digitalWrite(row1, HIGH);
+      break;
+    case 4:
+      digitalWrite(row4, HIGH);
+      digitalWrite(row3, HIGH);
+      digitalWrite(row2, HIGH);
+      break;
+  }
+}
+
+void letter1(int x)
+{
+  switch(x){
+    case 0:
+      break;
+    case 1:
+      digitalWrite(row4, HIGH);
+      digitalWrite(row1, HIGH);
+      break;
+    case 2:
+      digitalWrite(row5, HIGH);
+      digitalWrite(row4, HIGH);
+      digitalWrite(row3, HIGH);
+      digitalWrite(row2, HIGH);
+      digitalWrite(row1, HIGH);
+      break;
+    case 3:
+      digitalWrite(row1, HIGH);
+      break;
+    case 4:
+      break;
+  }
+}
+
+void letter2(int x)
+{
+  switch(x){
+    case 0:
+      digitalWrite(row5, HIGH);
+      digitalWrite(row1, HIGH);
+      digitalWrite(row2, HIGH);
+      break;
+    case 1:
+      digitalWrite(row5, HIGH);
+      digitalWrite(row1, HIGH);
+      digitalWrite(row3, HIGH);
+      break;
+    case 2:
+      digitalWrite(row5, HIGH);
+      digitalWrite(row1, HIGH);
+      digitalWrite(row3, HIGH);
+      break;
+    case 3:
+      digitalWrite(row5, HIGH);
+      digitalWrite(row1, HIGH);
+      digitalWrite(row3, HIGH);
+      break;
+    case 4:
+      digitalWrite(row1, HIGH);
+      digitalWrite(row4, HIGH);
+      break;
+  }
+}
+
+void letter3(int x)
+{
+  switch(x){
+    case 0:
+      digitalWrite(row5, HIGH);
+      digitalWrite(row1, HIGH);
+      break;
+    case 1:
+      digitalWrite(row5, HIGH);
+      digitalWrite(row1, HIGH);
+      break;
+    case 2:
+      digitalWrite(row5, HIGH);
+      digitalWrite(row1, HIGH);
+      digitalWrite(row3, HIGH);
+      break;
+    case 3:
+      digitalWrite(row5, HIGH);
+      digitalWrite(row1, HIGH);
+      digitalWrite(row3, HIGH);
+      break;
+    case 4:
+      digitalWrite(row2, HIGH);
+      digitalWrite(row4, HIGH);
+      break;
+  }
+}
+
+void letter4(int x)
+{
+  switch(x){
+    case 0:
+      digitalWrite(row5, HIGH);
+      digitalWrite(row4, HIGH);
+      break;
+    case 1:
+      digitalWrite(row3, HIGH);
+      break;
+    case 2:
+      digitalWrite(row3, HIGH);
+      break;
+    case 3:
+      digitalWrite(row3, HIGH);
+      break;
+    case 4:
+      digitalWrite(row1, HIGH);
+      digitalWrite(row2, HIGH);
+      digitalWrite(row3, HIGH);
+      digitalWrite(row4, HIGH);
+      digitalWrite(row5, HIGH);
+      break;
+  }
+}
+
+void letter5(int x)
+{
+  switch(x){
+    case 0:
+      digitalWrite(row5, HIGH);
+      digitalWrite(row4, HIGH);
+      digitalWrite(row3, HIGH);
+      digitalWrite(row1, HIGH);
+      break;
+    case 1:
+      digitalWrite(row5, HIGH);
+      digitalWrite(row3, HIGH);
+      digitalWrite(row1, HIGH);
+      break;
+    case 2:
+      digitalWrite(row5, HIGH);
+      digitalWrite(row3, HIGH);
+      digitalWrite(row1, HIGH);
+      break;
+    case 3:
+      digitalWrite(row5, HIGH);
+      digitalWrite(row3, HIGH);
+      digitalWrite(row1, HIGH);
+      break;
+    case 4:
+      digitalWrite(row2, HIGH);
+      digitalWrite(row5, HIGH);
+      break;
+  }
+}
+
+void letter6(int x)
+{
+  switch(x){
+    case 0:
+      digitalWrite(row4, HIGH);
+      digitalWrite(row3, HIGH);
+      digitalWrite(row2, HIGH);
+      break;
+    case 1:
+      digitalWrite(row5, HIGH);
+      digitalWrite(row3, HIGH);
+      digitalWrite(row1, HIGH);
+      break;
+    case 2:
+      digitalWrite(row5, HIGH);
+      digitalWrite(row3, HIGH);
+      digitalWrite(row1, HIGH);
+      break;
+    case 3:
+      digitalWrite(row5, HIGH);
+      digitalWrite(row3, HIGH);
+      digitalWrite(row1, HIGH);
+      break;
+    case 4:
+      digitalWrite(row2, HIGH);
+      digitalWrite(row5, HIGH);
+      break;
+  }
+}
+
+void letter7(int x)
+{
+  switch(x){
+    case 0:
+      digitalWrite(row5, HIGH);
+      break;
+    case 1:
+      digitalWrite(row5, HIGH);
+      break;
+    case 2:
+      digitalWrite(row5, HIGH);
+      break;
+    case 3:
+      digitalWrite(row5, HIGH);
+      digitalWrite(row3, HIGH);
+      digitalWrite(row2, HIGH);
+      digitalWrite(row1, HIGH);
+      break;
+    case 4:
+      digitalWrite(row4, HIGH);
+      digitalWrite(row5, HIGH);
+      break;
+  }
+}
+
+void letter8(int x)
+{
+  switch(x){
+    case 0:
+      digitalWrite(row4, HIGH);
+      digitalWrite(row2, HIGH);
+      break;
+    case 1:
+      digitalWrite(row5, HIGH);
+      digitalWrite(row3, HIGH);
+      digitalWrite(row1, HIGH);
+      break;
+    case 2:
+      digitalWrite(row5, HIGH);
+      digitalWrite(row3, HIGH);
+      digitalWrite(row1, HIGH);
+      break;
+    case 3:
+      digitalWrite(row5, HIGH);
+      digitalWrite(row3, HIGH);
+      digitalWrite(row1, HIGH);
+      break;
+    case 4:
+      digitalWrite(row4, HIGH);
+      digitalWrite(row2, HIGH);
+      break;
+  }
+}
+
+void letter9(int x)
+{
+  switch(x){
+    case 0:
+      digitalWrite(row4, HIGH);
+      break;
+    case 1:
+      digitalWrite(row5, HIGH);
+      digitalWrite(row3, HIGH);
+      break;
+    case 2:
+      digitalWrite(row5, HIGH);
+      digitalWrite(row3, HIGH);
+      digitalWrite(row1, HIGH);
+      break;
+    case 3:
+      digitalWrite(row5, HIGH);
+      digitalWrite(row3, HIGH);
+      digitalWrite(row1, HIGH);
+      break;
+    case 4:
+      digitalWrite(row4, HIGH);
+      digitalWrite(row2, HIGH);
+      break;
+  }
+}
+
+void letterColon(int x)
+{
+  switch(x){
+    case 0:
+      break;
+    case 1:
+      break;
+    case 2:
+      digitalWrite(row4, HIGH);
+      digitalWrite(row2, HIGH);;
+      break;
+    case 3:
+      break;
+    case 4:
       break;
   }
 }
